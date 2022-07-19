@@ -1,0 +1,19 @@
+{
+  "name": "curs-nodejs",
+  "version": "1.0.0",
+  "description": "Aprendendo Node",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessica-leoa/Curs-NodeJs.git"
+  },
+  "author": "Jéssica Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jessica-leoa/Curs-NodeJs/issues"
+  },
+  "homepage": "https://github.com/jessica-leoa/Curs-NodeJs#readme"
+}
