@@ -5,7 +5,7 @@ http
     //Aqui digo o que eu quero que ele faca ao abrir no browser na porta correspondente
     res.writeHead(200, { 'Content-Type': 'application/json' });
 // Direcionamento de rota
-    if (req.url === "/produto"){
+    if (req.url === "/products"){
       res.end(
         JSON.stringify({
           message: "Rota de produto",
