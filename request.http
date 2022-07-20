@@ -2,8 +2,8 @@ POST http://localhost:4002/products
 content-type: application/json
 
 {
-    "name": "pomada",
-    "price": 20
+    "name": "afroPuf",
+    "price": 150
 }
 
 ###
@@ -16,12 +16,13 @@ GET http://localhost:4002/products/2e60f8c6-6b36-47ca-9e28-2da52072e7c6
 
 ###
 
-PUT http://localhost:4002/products/c01d1141-baac-44d2-a498-57774061a5be
+PUT http://localhost:4002/products/06a370bc-212c-4ef3-9d57-91182b77374f
 Content-Type: application/json
 
 {
-    "price": 250
+    "name": "AfroPuf",
+    "price": 200
 }
 
 ###
-DELETE http://localhost:4002/products/abbdd383-b939-404d-974d-c0102116dda0
+DELETE http://localhost:4002/products/eba2b6cf-6630-410c-a985-043175f198f9

@@ -1,13 +1,24 @@
 const express = require("express");
 const app = express(); //Inicializando a funcao express
 const {randomUUID} = require("crypto") //Pegando a funcao randomUID da lib crypto para gerar um id
+const fs = require("fs"); // Usar arquivo text na minha API
+const { json } = require("express/lib/response");
 
 //Criando middlwes (use)
 app.use(express.json()); //Formato para receber um tipo de requisicao, no caso JSON
 
+// O array precisa receber os dados do arquivo para iniciar, para isso faco a escrita dos dados do arquivo para o array
+fs.readFile("products.json", "utf-8", (err, data) =>{
+  if(err){
+    console.log(err);
+  }else{
+    products = JSON.parse(data);
+  }
+});
+
 
 // criando um array
-const products = [];
+let products = []; 
 
 /* Posso usar os métodos no app (GET buscar, POST inserir, UPDATE alterar, DELETE)
 
@@ -27,10 +38,15 @@ app.post("/products", (req, res) => {
     name,
     price,
     id: randomUUID(),
+
   }
 
   //Colocando objeto product na lista de products
-  products.push(product);
+  products.push(product);  
+
+  //Inserindo no ARQUIVO
+  productFile();
+ 
 
   // Retorna a resposta fazendo um request (res) em formato json do dobjeto
   return res.json(product)
@@ -65,6 +81,9 @@ app.put("/products/:id", (req, res) => {
     name,
     price,
   };
+  //Atualizando o ARQUIVO
+  productFile();
+
   return res.json({ message: "Produto alterado con sucesso!"});
 });
 
@@ -76,9 +95,24 @@ app.delete("/products/:id", (req, res) => {
 
   products.splice(productIndex, 1);
 
+  //Deletando produto do ARQUIVO
+  productFile();
+  
   return res.json({ message: "Produto removido com sucesso!"});
+ 
 });
 
+// FUNCAO PARA ATUALIZAR O ARQUIVO (BD) A CADA MÉTODO EXECUTADO
+function productFile(){
+  //Atualizando o arquivo com base com base nas modificacoes feitas no array(Recebendo arquivo em formati JSON)
+  fs.writeFile("products.json", JSON.stringify(products), (err) =>{
+    if(err){
+      console.log(err); //Se der erro
+    } else {
+      console.log("Produto inserido!");
+    }
+  });
+}
 
 app.listen(4002, () => console.log("Servidor rodando na porta 4002"));
 
